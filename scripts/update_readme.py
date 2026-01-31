@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Regenerate README.md from the TIL folder structure.
+Regenerate README.md from the Workbench folder structure.
 Run this after adding new entries to update the index.
 """
 
@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 import re
 
-TIL_DIR = Path(__file__).parent.parent
+WORKBENCH_DIR = Path(__file__).parent.parent
 EXCLUDED_DIRS = {'.git', '.github', '_site', 'scripts', '__pycache__'}
 
 def get_title_from_file(filepath):
@@ -40,16 +40,16 @@ def get_date_from_file(filepath):
     return datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
 
 def build_index():
-    """Build the TIL index."""
+    """Build the Workbench index."""
     categories = {}
 
-    for item in sorted(TIL_DIR.iterdir()):
+    for item in sorted(WORKBENCH_DIR.iterdir()):
         if item.is_dir() and item.name not in EXCLUDED_DIRS and not item.name.startswith('_'):
             entries = []
             for md_file in sorted(item.glob('*.md')):
                 title = get_title_from_file(md_file)
                 date = get_date_from_file(md_file)
-                rel_path = md_file.relative_to(TIL_DIR)
+                rel_path = md_file.relative_to(WORKBENCH_DIR)
                 entries.append((title, str(rel_path), date))
 
             if entries:
@@ -60,9 +60,9 @@ def build_index():
 def generate_readme(categories):
     """Generate README content."""
     lines = [
-        "# TIL (Today I Learned)",
+        "# Workbench",
         "",
-        "A collection of short notes on things I've learned, inspired by [Simon Willison's TIL](https://til.simonwillison.net/).",
+        "Tools, scripts, and workflow improvements I'm building - published as I go.",
         "",
         "---",
         ""
@@ -70,7 +70,7 @@ def generate_readme(categories):
 
     # Count total
     total = sum(len(entries) for entries in categories.values())
-    lines.append(f"_{total} TILs so far._")
+    lines.append(f"_{total} project{'s' if total != 1 else ''} so far._")
     lines.append("")
 
     # Categories
@@ -90,7 +90,9 @@ def generate_readme(categories):
         "",
         "## About",
         "",
-        "These are small, focused write-ups on specific things I've figured out. Not polished blog posts—just notes I'm making public in case they're useful to others.",
+        "This is where I document the tools and systems I build to improve how I work. Not polished blog posts—practical write-ups on things I've actually built and use.",
+        "",
+        "Inspired by [Simon Willison's TIL](https://til.simonwillison.net/).",
         "",
         "## License",
         "",
@@ -103,10 +105,10 @@ if __name__ == "__main__":
     categories = build_index()
     readme_content = generate_readme(categories)
 
-    readme_path = TIL_DIR / "README.md"
+    readme_path = WORKBENCH_DIR / "README.md"
     with open(readme_path, 'w') as f:
         f.write(readme_content)
 
     print(f"Updated {readme_path}")
     print(f"Categories: {list(categories.keys())}")
-    print(f"Total TILs: {sum(len(e) for e in categories.values())}")
+    print(f"Total projects: {sum(len(e) for e in categories.values())}")

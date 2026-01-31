@@ -1,20 +1,22 @@
-# TIL (Today I Learned)
+# Workbench
 
-A collection of short notes on things I've learned, inspired by [Simon Willison's TIL](https://til.simonwillison.net/).
+Tools, scripts, and workflow improvements I'm building - published as I go.
 
 ---
 
-_1 TILs so far._
+_1 project so far._
 
 ## Claude Code
 
-- [Tracking Claude Code Subagent Costs](claude-code/subagent-cost-tracking.md) - 2026-01-31
+- [Tracking Subagent Costs](claude-code/subagent-cost-tracking.md) - 2026-01-31
 
 ---
 
 ## About
 
-These are small, focused write-ups on specific things I've figured out. Not polished blog posts—just notes I'm making public in case they're useful to others.
+This is where I document the tools and systems I build to improve how I work. Not polished blog posts—practical write-ups on things I've actually built and use.
+
+Inspired by [Simon Willison's TIL](https://til.simonwillison.net/).
 
 ## License
 
