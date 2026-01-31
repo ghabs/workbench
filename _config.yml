@@ -1,6 +1,7 @@
 title: Ben Goldhaber's Workbench
 description: Tools, scripts, and workflow improvements - built in public
 url: https://workbench.bengoldhaber.com
+baseurl: ""
 theme: minima
 
 # Minima theme settings
