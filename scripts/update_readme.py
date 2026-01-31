@@ -13,10 +13,20 @@ WORKBENCH_DIR = Path(__file__).parent.parent
 EXCLUDED_DIRS = {'.git', '.github', '_site', 'scripts', '__pycache__'}
 
 def get_title_from_file(filepath):
-    """Extract title from first H1 in markdown file."""
+    """Extract title from frontmatter or first H1 in markdown file."""
     try:
         with open(filepath, 'r') as f:
-            for line in f:
+            content = f.read()
+            # Check for frontmatter title
+            if content.startswith('---'):
+                end = content.find('---', 3)
+                if end != -1:
+                    frontmatter = content[3:end]
+                    for line in frontmatter.split('\n'):
+                        if line.startswith('title:'):
+                            return line[6:].strip().strip('"\'')
+            # Fallback to first H1
+            for line in content.split('\n'):
                 if line.startswith('# '):
                     return line[2:].strip()
     except:
@@ -57,10 +67,13 @@ def build_index():
 
     return categories
 
-def generate_readme(categories):
-    """Generate README content."""
+def generate_index(categories):
+    """Generate index.md content with Jekyll frontmatter."""
     lines = [
-        "# Workbench",
+        "---",
+        "layout: home",
+        "title: Workbench",
+        "---",
         "",
         "Tools, scripts, and workflow improvements I'm building - published as I go.",
         "",
@@ -101,14 +114,16 @@ def generate_readme(categories):
 
     return "\n".join(lines)
 
+generate_readme = generate_index  # Alias for backwards compat
+
 if __name__ == "__main__":
     categories = build_index()
-    readme_content = generate_readme(categories)
+    index_content = generate_index(categories)
 
-    readme_path = WORKBENCH_DIR / "README.md"
-    with open(readme_path, 'w') as f:
-        f.write(readme_content)
+    index_path = WORKBENCH_DIR / "index.md"
+    with open(index_path, 'w') as f:
+        f.write(index_content)
 
-    print(f"Updated {readme_path}")
+    print(f"Updated {index_path}")
     print(f"Categories: {list(categories.keys())}")
     print(f"Total projects: {sum(len(e) for e in categories.values())}")

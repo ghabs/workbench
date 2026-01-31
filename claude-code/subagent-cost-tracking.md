@@ -1,4 +1,8 @@
-# Tracking Claude Code Subagent Costs
+---
+layout: post
+title: Tracking Claude Code Subagent Costs
+date: 2026-01-31
+---
 
 When using Claude Code's Task tool to spawn subagents, it's easy to lose track of how much you're spending in tokens and money. I'm not really worried about going bankrupt from a combinatorial explosion of sub-agents; it's more that if I've got a dashboard I can have a good mental map of what's going on in the ever expanding empire of agents.
 

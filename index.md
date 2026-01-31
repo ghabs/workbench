@@ -1,4 +1,7 @@
-# Workbench
+---
+layout: home
+title: Workbench
+---
 
 Tools, scripts, and workflow improvements I'm building - published as I go.
 

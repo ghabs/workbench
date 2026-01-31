@@ -8,6 +8,9 @@ theme: minima
 minima:
   skin: auto
 
+# Only show these pages in header nav (empty = none)
+header_pages: []
+
 # Markdown settings
 markdown: kramdown
 kramdown:
