@@ -1,0 +1,20 @@
+title: Ben Goldhaber's TIL
+description: Things I've learned, published as I go
+url: https://til.bengoldhaber.com
+theme: minima
+
+# Minima theme settings
+minima:
+  skin: auto
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+  input: GFM
+
+# Exclude from build
+exclude:
+  - scripts/
+  - "*.sh"
+  - LICENSE
