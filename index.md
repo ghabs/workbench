@@ -7,7 +7,11 @@ Tools, scripts, and workflow improvements I'm building - published as I go.
 
 ---
 
-_1 project so far._
+_2 projects so far._
+
+## Workflow
+
+- [Physical Touch as Proof of Human Approval](workflow/physical-touch-signatures.md) - 2026-02-06
 
 ## Claude Code
 
